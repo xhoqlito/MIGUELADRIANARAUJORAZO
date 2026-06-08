@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Miguel Adrian Araujo Razo — Perfil Académico</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    /* ── ENCABEZADO ESTILO CV ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+      background-color: #f8fafc;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .header-info h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 6px;
+      letter-spacing: -0.025em;
+    }
+
+    .header-info .subtitle {
+      font-size: 16px;
+      color: #2563eb;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 0.025em;
+    }
+
+    .header-info p {
+      font-size: 14px;
+      color: #4b5563;
+      font-weight: 400;
+    }
+
+    /* Contenedor de elementos del lado derecho */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .header-logos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      max-width: 190px;
+    }
+
+    .logos-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 10px;
+      font-weight: 600;
+      color: #6b7280;
+      line-height: 1.3;
+    }
+
+    /* Área de foto de perfil (Lado derecho) */
+    .photo-area {
+      text-align: center;
+    }
+
+    .photo-box {
+      width: 110px;
+      height: 130px;
+      border: 2px dashed #d1d5db;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      background: #ffffff;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .photo-box:hover {
+      transform: translateY(-2px);
+      border-color: #2563eb;
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1);
+    }
+
+    .photo-box span {
+      font-size: 11px;
+      color: #6b7280;
+      text-align: center;
+      padding: 5px;
+      font-weight: 500;
+    }
+
+    .photo-box img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      display: none;
+    }
+
+    #photoInput { display: none; }
+
+    /* ── ESTRUCTURA PRINCIPAL CV ── */
+    .main-layout {
+      display: flex;
+      gap: 35px;
+    }
+
+    /* Menú Izquierdo */
+    .sidebar {
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-nav {
+      position: sticky;
+      top: 20px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+    }
+
+    .sidebar li {
+      margin-bottom: 6px;
+    }
+
+    .sidebar a {
+      color: #4b5563;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      display: block;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: #f3f4f6;
+      color: #2563eb;
+      font-weight: 600;
+      padding-left: 20px;
+    }
+
+    /* Contenido Derecho */
+    .content {
+      flex: 1;
+    }
+
+    .section {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
+      transition: border-color 0.2s ease;
+    }
+
+    .section:hover {
+      border-color: #d1d5db;
+    }
+
+    .section-title {
+      color: #2563eb;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-left: 4px solid #2563eb;
+      padding-left: 12px;
+    }
+
+    .section p {
+      font-size: 14.5px;
+      color: #374151;
+      margin-bottom: 14px;
+      text-align: justify;
+    }
+
+    /* Listas Académicas */
+    ul.academic-list {
+      list-style-type: none;
+    }
+
+    ul.academic-list li {
+      font-size: 14.5px;
+      color: #374151;
+      margin-bottom: 10px;
+      padding: 12px 16px;
+      background-color: #f9fafb;
+      border-radius: 8px;
+      border-left: 3px solid #e5e7eb;
+      transition: all 0.2s ease;
+    }
+
+    ul.academic-list li:hover {
+      transform: translateX(4px);
+      background-color: #f3f4f6;
+      border-left-color: #2563eb;
+    }
+
+    ul.academic-list strong {
+      color: #111827;
+      font-weight: 600;
+    }
+
+    /* Enlaces dentro del CV */
+    .content a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed transparent;
+      transition: border-color 0.2s ease;
+    }
+
+    .content a:hover {
+      border-bottom-color: #2563eb;
+    }
+
+    /* Responsive */
+    @media (max-width: 868px) {
+      .header { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .header-right { width: 100%; justify-content: space-between; }
+      .main-layout { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .sidebar-nav { position: static; }
+      .sidebar ul { display: flex; flex-wrap: wrap; gap: 8px; }
+      .sidebar a { background: #f3f4f6; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ENCABEZADO -->
+  <header class="header">
+    <div class="header-info">
+      <h1>Araujo Razo Miguel Adrian</h1>
+      <p class="subtitle">Estudiante de Ingeniería de Inteligencia Artificial</p>
+      <p>Universidad Nacional Mayor de San Marcos</p>
+      <p>Lima, Perú</p>
+    </div>
+
+    <div class="header-right">
+      <!-- Sección corregida con los nombres exactos de tus archivos locales -->
+      <div class="header-logos">
+        <div class="logos-row">
+          <img class="logo-img" src="san_marcos.png" alt="Escudo Universidad Nacional Mayor de San Marcos">
+          <img class="logo-img" src="fisi.png" alt="Logo FISI">
+        </div>
+        <div class="logo-text">
+          Facultad de Ingeniería de Sistemas e Informática
+        </div>
+      </div>
+
+      <!-- Foto de perfil interactiva en el lado derecho -->
+      <div class="photo-area">
+        <label class="photo-box" for="photoInput" title="Haga clic para subir foto">
+          <input type="file" id="photoInput" accept="image/*" onchange="loadPhoto(event)"/>
+          <img id="profileImg" src="" alt="Foto de perfil"/>
+          <span id="photoLabel">Subir Foto CV</span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-layout">
+
+    <!-- MENÚ LATERAL IZQUIERDO -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#formacion">Formación</a></li>
+          <li><a href="#cs-interes">Computer Science</a></li>
+          <li><a href="#cursos">Cursos</a></li>
+          <li><a href="#enlaces">Enlaces</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL DERECHO -->
+    <main class="content">
+
+      <!-- FORMACIÓN ACADÉMICA -->
+      <section class="section" id="formacion">
+        <h2 class="section-title">Formación Académica</h2>
+        <ul class="academic-list">
+          <li><strong>Pregrado:</strong> Ingeniería de Inteligencia Artificial (Ciclo 2026-1).</li>
+          <li><strong>Idiomas:</strong> Inglés (Nivel Básico A1 aprobado).</li>
+        </ul>
+      </section>
+
+      <!-- ÁREAS DE INTERÉS -->
+      <section class="section" id="cs-interes">
+        <h2 class="section-title">Áreas de Interés en Computer Science</h2>
+        <p>
+          Mi enfoque dentro de las Ciencias de la Computación se orienta hacia el análisis teórico y la implementación práctica de sistemas computacionales complejos, priorizando la eficiencia algorítmica, el modelado matemático y la escalabilidad de las arquitecturas de software orientadas a datos.
+        </p>
+        <ul class="academic-list">
+          <li><strong>Teoría de la Computación y Algoritmia:</strong> Diseño y análisis de algoritmos óptimos, evaluación de la complejidad computacional e implementación de estructuras de datos avanzadas.</li>
+          <li><strong>Inteligencia Artificial y Computación Científica:</strong> Desarrollo de modelos probabilísticos, arquitecturas de Machine Learning / Deep Learning y optimización matemática para el procesamiento de información a gran escala.</li>
+          <li><strong>Ingeniería de Software y Sistemas Distribuidos:</strong> Construcción de código modular de alto rendimiento mediante el paradigma de programación estructurada, control de versiones adaptativo y gestión eficiente de repositorios.</li>
+        </ul>
+      </section>
+
+      <!-- CURSOS -->
+      <section class="section" id="cursos">
+        <h2 class="section-title">Cursos del Ciclo Activo</h2>
+        <ul class="academic-list">
+          <li><strong>Introducción a la Computación:</strong> Prof. <a href="https://www.linkedin.com/in/ecuadrosv/" target="_blank" rel="noopener">Ernesto Cuadros Vargas</a>.</li>
+          <li><strong>Cálculo I:</strong> Prof. <a href="https://www.linkedin.com/in/marcos-maravi/" target="_blank" rel="noopener">Edwin Maraví Percca</a>.</li>
+          <li><strong>Redacción y Técnicas de Comunicación Efectiva I:</strong> Profa. <a href="https://www.linkedin.com/in/ana-eylin-coronel-tello-8934a4140/" target="_blank" rel="noopener">Ana Eylin Coronel Tello</a>.</li>
+          <li><strong>Métodos de Estudio Universitario:</strong> Profa. <a href="https://www.linkedin.com/in/miryam-cosme-felix-22a52140/" target="_blank" rel="noopener">Miryam Milagros Cosme Félix</a>.</li>
+          <li><strong>Álgebra y Geometría Analítica:</strong> Profa. Hellen Gloria Terreros Navarro.</li>
+          <li><strong>Medio Ambiente y Desarrollo Sostenible:</strong> Profa. Petronila Merida Fanola Merino.</li>
+          <li><strong>Desarrollo Personal y Liderazgo:</strong> Profa. Luz Basualdo Porras.</li>
+        </ul>
+      </section>
+
+      <!-- ENLACES DE INTERÉS -->
+      <section class="section" id="enlaces">
+        <h2 class="section-title">Enlaces de Interés</h2>
+        <ul class="academic-list">
+          <li><a href="https://www.linkedin.com/in/miguel-adrian-araujo-razo-a11b3a404/" target="_blank" rel="noopener">Perfil de LinkedIn Personal</a></li>
+          <li><a href="https://socios.spc.org.pe/ecuadros/" target="_blank" rel="noopener">Prof. Ernesto Cuadros — Website Docente</a></li>
+        </ul>
+      </section>
+
+      <!-- CONTACTO -->
+      <section class="section" id="contacto">
+        <h2 class="section-title">Contacto</h2>
+        <ul class="academic-list">
+          <li><strong>Correo Institucional:</strong> <a href="mailto:miguel.araujor@unmsm.edu.pe">miguel.araujor@unmsm.edu.pe</a></li>
+          <li><strong>Correo Personal:</strong> <a href="mailto:m1guel.ar4ujo.razo@gmail.com">m1guel.ar4ujo.razo@gmail.com</a></li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+</div>
+
+<script>
+  function loadPhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.getElementById('profileImg');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.getElementById('photoLabel').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+</script>
+
+</body>
+</html>
